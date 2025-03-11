@@ -1,5 +1,28 @@
 #include <iostream>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 int64_t FindMaxElement(int64_t*);
 int64_t FindMinElement(int64_t*);
 int64_t CalculateAverage(int64_t*);
