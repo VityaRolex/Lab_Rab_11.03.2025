@@ -1,6 +1,4 @@
 
-#ifndef HEADER
-#define HEADER
 #include <iostream>
 void PrintArray(int64_t*, int64_t);
 void InputArr(int64_t*, int64_t);
@@ -57,4 +55,3 @@ void ReverseArray(Type* arr)
         switch(arr[i], arr[size - i]);
     }
 }
-#endif // HEADER.H
