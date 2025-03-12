@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include "header.h"
 #include <cmath>
@@ -198,4 +199,7 @@ int64_t FindMinElement(int64_t* arr)
 int64_t CalculateAverage(int64_t* arr)
 {
     return (FindMaxElement(arr) + FindMinElement(arr)) / 2;
+
 }
+
+
