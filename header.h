@@ -1,5 +1,11 @@
-#include <iostream>
 
+#include <iostream>
+void PrintArray(int64_t*, int64_t);
+void InputArr(int64_t*, int64_t);
+void InputSize(int64_t&);
+int64_t MaxElement(int64_t*, int64_t);
+int64_t MinElement(int64_t*, int64_t);
+void RemoveNegativesAndFillZeros(int64_t*, int64_t);
 int32_t CountElements(char * , int32_t );
 int32_t CountElements(double * , int32_t);
 int32_t CountElements(int32_t * , int32_t);
@@ -49,4 +55,5 @@ void ReverseArray(Type* arr, int64_t size)
         arr[i] = arr[size - i - 1];
         arr[size - i - 1] = tmp;
     }
+
 }
