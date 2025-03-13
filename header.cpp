@@ -65,7 +65,7 @@ void RemoveNegativesAndFillZeros(int64_t* arr, int64_t size)
  }
 }
 
-int32_t CountElements(char * Arr, int32_t lenght)
+int32_t CountElements(char * Arr, int64_t lenght)
 {
     int32_t result{};
     int32_t index_of_first_zero{};
@@ -87,24 +87,28 @@ int32_t CountElements(char * Arr, int32_t lenght)
     {
         return -1;
     }
-    return index_of_last_zero - index_of_first_zero;
+    return index_of_last_zero - index_of_first_zero - 1;
 }
 
 
-bool isNumberSimple(int32_t number)
+bool isNumberSimple(int64_t number)
 {
-    for (size_t i = 2; i < sqrt(number); ++i)
+    for (size_t i = 2; i <= sqrt(number); ++i)
     {
         if (number % i == 0)
         {
             return 0;
         }
     }
+    if (number == 1)
+    {
+        return 0;
+    }
     return 1;
 }
 
 
-int32_t outputSumOfSimpleElements(int32_t* Arr, int32_t lenght)
+int32_t outputSumOfSimpleElements(int64_t* Arr, int64_t lenght)
 {
     int32_t result{};
     for (size_t i = 0; i < lenght; ++i)
@@ -142,7 +146,7 @@ int64_t FindMinElement(int64_t* arr, int64_t size)
     return minElement;
 }
 
-int64_t CalculateAverage(int64_t* arr, int64_t size)
+double CalculateAverage(int64_t* arr, int64_t size)
 {
     return (FindMaxElement(arr, size) + FindMinElement(arr, size)) / 2.0;
 }
