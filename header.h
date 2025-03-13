@@ -46,7 +46,7 @@ void ReverseArray(Type* arr, int64_t size)
     for(size_t i = 0; i < size/2; ++i)
     {
         tmp = arr[i];
-        arr[i] = arr[size - i + 1];
-        arr[size - i + 1] = tmp;
+        arr[i] = arr[size - i - 1];
+        arr[size - i - 1] = tmp;
     }
 }
