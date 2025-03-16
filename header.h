@@ -1,7 +1,5 @@
 
 #include <iostream>
-void PrintArray(int64_t*, int64_t);
-void InputArr(int64_t*, int64_t);
 void InputSize(int64_t&);
 int64_t MaxElement(int64_t*, int64_t);
 int64_t MinElement(int64_t*, int64_t);
@@ -79,4 +77,24 @@ void ReverseArray(Type* arr, int64_t size)
         arr[size - i - 1] = tmp;
     }
 
+}
+
+template<typename Type>
+void PrintArray(Type* Arr, int64_t lenght)
+{
+    for (int32_t i = 0; i < lenght; ++i)
+    {
+        std::cout << Arr[i] << ' ';
+    }
+    std::cout << '\n';
+}
+
+template<typename Type>
+void InputArr(Type* arr, int64_t size)
+{
+ for (int32_t i = 0; i < size; ++i)
+ {
+  std::cout << "Enter element number " << i + 1 << ": \n";
+  std::cin >> arr[i];
+ }
 }

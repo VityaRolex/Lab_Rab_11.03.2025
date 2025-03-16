@@ -3,21 +3,8 @@
 #include "header.h"
 #include <cmath>
 
-void PrintArray(int64_t* arr, int64_t size)
-{
- for (int i = 0; i < size; ++i)
- {
-  std::cout << arr[i] << " ";
- }
-}
 
-void InputArr(int64_t* arr, int64_t size)
-{
- for (int32_t i = 0; i < size; ++i)
- {
-  std::cin >> arr[i];
- }
-}
+
 
 void InputSize(int64_t& size)
 {
@@ -93,6 +80,10 @@ int32_t CountElements(char * Arr, int64_t lenght)
 
 bool isNumberSimple(int64_t number)
 {
+    if (number <= 0)
+    {
+        return 0;
+    }
     for (size_t i = 2; i <= sqrt(number); ++i)
     {
         if (number % i == 0)
