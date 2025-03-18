@@ -3,21 +3,52 @@
 void InputSize(int64_t&);
 int32_t CountElements(char * , int64_t);
 int32_t outputSumOfSimpleElements(int64_t*, int64_t);
+
 template<typename Type>
-void BubbleSort(Type * Arr, int64_t lenght)
+bool decrease(Type element_1, Type element_2)
+{
+    if (element_1 >= element_2)
+    {
+        return 1;
+    }
+    else 
+    {
+        return 0;
+    }
+    return element_1 >= element_2;
+}
+
+
+template<typename Type>
+bool increase(Type element_1, Type element_2)
+{
+    if (element_1 <= element_2)
+    {
+        return 1;
+    }
+    else 
+    {
+        return 0;
+    }
+    return element_1 <= element_2;
+} 
+
+
+template<typename Type>
+void BubbleSort(Type* Arr, int64_t lenght, bool (*func)(Type, Type))
 {
     Type temp{};
-    int32_t counter{};
-    while(counter < lenght - 1)
+    for (int32_t i = 0; i < lenght; ++i)
     {
-        if (Arr[counter] > Arr[counter + 1])
+        for (int32_t j = 0; j < lenght-1; ++j)
         {
-            temp = Arr[counter];
-            Arr[counter] = Arr[counter+1];
-            Arr[counter + 1] = temp;
-            counter = -1;
+            if (!func(Arr[j], Arr[j+1]) == true)
+            {
+                temp = Arr[j];
+                Arr[j] = Arr[j+1];
+                Arr[j+1] = temp;
+            }
         }
-        counter += 1;
     }
 }
 
@@ -63,8 +94,9 @@ Type FindElement(Type* arr, Type element, int64_t size)
 template<typename Type>
 void ReverseArray(Type* arr, int64_t size)
 {
+    int64_t lenght_of_for{size/2};
     Type tmp{};
-    for(size_t i = 0; i < size/2; ++i)
+    for(size_t i = 0; i < lenght_of_for; ++i)
     {
         tmp = arr[i];
         arr[i] = arr[size - i - 1];
@@ -109,9 +141,9 @@ void RemoveNegativesAndFillZeros(Type* arr, int64_t size)
 }
 
 template<typename Type>
-int64_t FindMaxElement(Type* arr, int64_t size)
+Type FindMaxElement(Type* arr, int64_t size)
 {
-    int64_t maxElement{arr[0]};
+    Type maxElement{arr[0]};
     for (size_t i = 0; i < size; ++i) 
     {
         if (arr[i] > maxElement) 
@@ -123,9 +155,9 @@ int64_t FindMaxElement(Type* arr, int64_t size)
 }
 
 template<typename Type>
-int64_t FindMinElement(Type* arr, int64_t size)
+Type FindMinElement(Type* arr, int64_t size)
 {
-    int64_t minElement{arr[0]};
+    Type minElement{arr[0]};
     for (size_t i = 0; i < size; ++i) 
     {
         if (arr[i] < minElement) 
@@ -155,7 +187,7 @@ int64_t MaxElement(Type* arr, int64_t size)
    maxIndex = i;
   }
  }
- return maxIndex;
+ return maxIndex + 1;
 }
 
 template<typename Type>
@@ -169,6 +201,5 @@ int64_t MinElement(Type* arr, int64_t size)
    minIndex = i;
   }
  }
- return minIndex;
+ return minIndex + 1;
 }
-

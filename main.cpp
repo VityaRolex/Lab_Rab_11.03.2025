@@ -11,6 +11,7 @@
   char char_element{};
   double double_element{};
   int32_t switcher{};
+  int32_t switcher_2{};
   std::cout << "Press 1 if you want to work with char array and 2 for work with int array and 3 for work with double array \n";
   std::cin >> switcher;
   while (switcher != 1 && switcher != 2 && switcher != 3)
@@ -84,7 +85,31 @@
       RemoveNegativesAndFillZeros(Arr_of_int, lenght);
       std::cout << "Array with removed negatives: \n";
       PrintArray(Arr_of_int, lenght);
-      BubbleSort(Arr_of_int, lenght);
+      std::cout << "Enter 1 if you want to sort array to increase and 2 for sort to decrease \n";
+      
+      std::cin >> switcher;
+      while (switcher != 1 && switcher != 2)
+    {
+        std::cout << "Try again \n";
+       std::cin >> switcher_2;
+    }
+    switch(switcher_2)
+    {
+      case 1:
+      {
+        BubbleSort(Arr_of_int, lenght, increase);
+        break;
+      }
+      case 2:
+      {
+        BubbleSort(Arr_of_int, lenght, decrease);
+        break;
+      }
+      default:
+      {
+        break;
+      }
+    }
       std::cout << "Sorted Array with removed zeros: \n";
       PrintArray(Arr_of_int, lenght);
       ReverseArray(Arr_of_int, lenght);
@@ -124,7 +149,25 @@
       RemoveNegativesAndFillZeros(Arr_of_double, lenght);
       std::cout << "Array with removed negatives: \n";
       PrintArray(Arr_of_double, lenght);
-      BubbleSort(Arr_of_double, lenght);
+      std::cout << "Enter 1 if you want to sort array to increase and 2 for sort to decrease \n";
+      
+      std::cin >> switcher;
+      while (switcher != 1 && switcher != 2)
+    {
+        std::cout << "Try again \n";
+       std::cin >> switcher_2;
+    }
+    switch(switcher_2)
+    {
+      case 1:
+      {
+        BubbleSort(Arr_of_double, lenght, increase);
+      }
+      case 2:
+      {
+        BubbleSort(Arr_of_double, lenght, decrease);
+      }
+    }
       std::cout << "Sorted Array with removed zeros: \n";
       PrintArray(Arr_of_double, lenght);
       ReverseArray(Arr_of_double, lenght);
