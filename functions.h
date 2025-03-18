@@ -2,36 +2,6 @@
 #include <iostream>
 
 template<typename Type>
-bool decrease(Type element_1, Type element_2)
-{
-    if (element_1 >= element_2)
-    {
-        return 1;
-    }
-    else 
-    {
-        return 0;
-    }
-    return element_1 >= element_2;
-}
-
-
-template<typename Type>
-bool increase(Type element_1, Type element_2)
-{
-    if (element_1 <= element_2)
-    {
-        return 1;
-    }
-    else 
-    {
-        return 0;
-    }
-    return element_1 <= element_2;
-} 
-
-
-template<typename Type>
 void BubbleSort(Type* Arr, int64_t lenght, int32_t switcher)
 {
     Type temp{};
@@ -90,7 +60,7 @@ int32_t CountElements(Type * Arr, int64_t lenght)
     {
         throw "Array contains 0 zeros \n";
     }
-    else if (index_of_last_zero == -1)
+    else if (index_of_last_zero - index_of_first_zero == 0)
     {
         throw "Array contains only 1 zero \n";
     }
@@ -118,7 +88,7 @@ int32_t CountElements(char * Arr, int64_t lenght)
     {
         throw "Array contains 0 zeros \n";
     }
-    else if (index_of_last_zero == -1)
+    else if (index_of_last_zero - index_of_first_zero == 0)
     {
         throw "Array contains only 1 zero \n";
     }
@@ -258,8 +228,8 @@ double CalculateAverage(Type* arr, int64_t size)
 {
     double result{};
     int32_t temp{};
-    int32_t minIndex{MinElement(arr, size)};
-    int32_t maxIndex{MaxElement(arr, size)};
+    int64_t minIndex{MinElement(arr, size)};
+    int64_t maxIndex{MaxElement(arr, size)};
     if (minIndex > maxIndex)
     {
         temp = minIndex;
