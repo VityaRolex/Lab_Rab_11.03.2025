@@ -1,14 +1,8 @@
 
 #include <iostream>
 void InputSize(int64_t&);
-int64_t MaxElement(int64_t*, int64_t);
-int64_t MinElement(int64_t*, int64_t);
-void RemoveNegativesAndFillZeros(int64_t*, int64_t);
 int32_t CountElements(char * , int64_t);
 int32_t outputSumOfSimpleElements(int64_t*, int64_t);
-int64_t FindMaxElement(int64_t*, int64_t);
-int64_t FindMinElement(int64_t*, int64_t);
-double CalculateAverage(int64_t*, int64_t);
 template<typename Type>
 void BubbleSort(Type * Arr, int64_t lenght)
 {
@@ -98,3 +92,83 @@ void InputArr(Type* arr, int64_t size)
   std::cin >> arr[i];
  }
 }
+
+template<typename Type>
+void RemoveNegativesAndFillZeros(Type* arr, int64_t size)
+{
+ int posIndex = 0; 
+ for (int i = 0; i < size; ++i) {
+  if (arr[i] >= 0) {
+   arr[posIndex] = arr[i];
+   posIndex++;
+  }
+ }
+ for (int i = posIndex; i < size; ++i) {
+  arr[i] = 0;
+ }
+}
+
+template<typename Type>
+int64_t FindMaxElement(Type* arr, int64_t size)
+{
+    int64_t maxElement{arr[0]};
+    for (size_t i = 0; i < size; ++i) 
+    {
+        if (arr[i] > maxElement) 
+        {
+            maxElement = arr[i];
+        }
+    }
+    return maxElement;
+}
+
+template<typename Type>
+int64_t FindMinElement(Type* arr, int64_t size)
+{
+    int64_t minElement{arr[0]};
+    for (size_t i = 0; i < size; ++i) 
+    {
+        if (arr[i] < minElement) 
+        {
+            minElement = arr[i];
+        }
+    }
+    return minElement;
+}
+
+
+template<typename Type>
+double CalculateAverage(Type* arr, int64_t size)
+{
+    return (FindMaxElement(arr, size) + FindMinElement(arr, size)) / 2.0;
+}
+
+
+template<typename Type>
+int64_t MaxElement(Type* arr, int64_t size)
+{
+ int64_t maxIndex{};
+ for (int64_t i = 1; i < size; ++i)
+ {
+  if (arr[i] > arr[maxIndex])
+  {
+   maxIndex = i;
+  }
+ }
+ return maxIndex;
+}
+
+template<typename Type>
+int64_t MinElement(Type* arr, int64_t size)
+{
+ int64_t minIndex{};
+ for (int64_t i = 1; i < size; ++i)
+ {
+  if (arr[i] < arr[minIndex])
+  {
+   minIndex = i;
+  }
+ }
+ return minIndex;
+}
+
