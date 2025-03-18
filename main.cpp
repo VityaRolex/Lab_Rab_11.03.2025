@@ -1,5 +1,5 @@
 #include <iostream>
-#include "header.h"
+#include "functions.h"
 
  int main()
  {
@@ -11,6 +11,7 @@
   char char_element{};
   double double_element{};
   int32_t switcher{};
+  int32_t switcher_2{};
   std::cout << "Press 1 if you want to work with char array and 2 for work with int array and 3 for work with double array \n";
   std::cin >> switcher;
   while (switcher != 1 && switcher != 2 && switcher != 3)
@@ -28,22 +29,25 @@
       std::cout << "Enter element you need to find \n";
       std::cin >> char_element;
       std::cout << '\n';
-      if (FindElement(Arr_of_char, char_element, lenght) != -1)
+      try 
       {
-        std::cout << "Your element is on " << FindElement(Arr_of_char, char_element, lenght) << " position in array" << '\n';
+        int32_t temp{FindElement(Arr_of_char, char_element, lenght)};
+        std::cout << "Your element is on " << temp << " position in array" << '\n';
       }
-      else
+      catch (const char * error_message)
       {
-        std::cout << "Your element isn't in array \n";
+        std::cout << error_message;
       }
-      if (CountElements(Arr_of_char, lenght) != -1)
+      try
       {
-        std::cout << "Distance between first and last zeros is " << CountElements(Arr_of_char, lenght) << '\n';
+        int32_t temp{CountElements(Arr_of_char, lenght)};
+        std::cout << "Distance between first and last zeros is " << temp << '\n';
       }
-      else
+      catch(const char * error_message)
       {
-        std::cout << "Array contains 1 or 0 zeros \n";
+        std::cout << error_message << '\n';
       }
+      
       std::cout << "Max element is " << FindMaxElement(Arr_of_char, lenght) << " and he is on " << MaxElement(Arr_of_char, lenght) << " position \n";
       std::cout << "Min element is " << FindMinElement(Arr_of_char, lenght) << " and he is on " << MinElement(Arr_of_char, lenght) << " position \n";
       
@@ -59,21 +63,23 @@
       std::cout << "Enter element you need to find \n";
       std::cin >> int_element;
       std::cout << '\n';
-      if (FindElement(Arr_of_int, int_element, lenght) != -1)
+      try 
       {
-        std::cout << "Your element is on " << FindElement(Arr_of_int, int_element, lenght) << " position in array" << '\n';
+        int32_t temp{FindElement(Arr_of_int, int_element, lenght)};
+        std::cout << "Your element is on " << temp << " position in array" << '\n';
       }
-      else
+      catch (const char * error_message)
       {
-        std::cout << "Your element isn't in array \n";
+        std::cout << error_message;
       }
-      if (CountElements(Arr_of_int, lenght) != -1)
+      try
       {
-        std::cout << "Distance between first and last zeros is " << CountElements(Arr_of_int, lenght) << '\n';
+        int32_t temp{CountElements(Arr_of_int, lenght)};
+        std::cout << "Distance between first and last zeros is " << temp << '\n';
       }
-      else
+      catch(const char * error_message)
       {
-        std::cout << "Array contains 1 or 0 zeros \n";
+        std::cout << error_message << '\n';
       }
       std::cout << "Max element is " << FindMaxElement(Arr_of_int, lenght) << " and he is on " << MaxElement(Arr_of_int, lenght) << " position \n";
       std::cout << "Min element is " << FindMinElement(Arr_of_int, lenght) << " and he is on " << MinElement(Arr_of_int, lenght) << " position \n";
@@ -84,11 +90,19 @@
       RemoveNegativesAndFillZeros(Arr_of_int, lenght);
       std::cout << "Array with removed negatives: \n";
       PrintArray(Arr_of_int, lenght);
-      BubbleSort(Arr_of_int, lenght);
-      std::cout << "Sorted Array with removed zeros: \n";
+      std::cout << "Enter 1 if you want to sort array to increase and 2 for sort to decrease \n";
+      
+      std::cin >> switcher_2;
+      while (switcher_2 != 1 && switcher_2 != 2)
+    {
+        std::cout << "Try again \n";
+       std::cin >> switcher_2;
+    }
+      BubbleSort(Arr_of_int, lenght, switcher_2);
+      std::cout << "Sorted Array with removed negatives: \n";
       PrintArray(Arr_of_int, lenght);
       ReverseArray(Arr_of_int, lenght);
-      std::cout << " Reversed sorted Array with removed zeros: \n";
+      std::cout << " Reversed sorted Array with removed negatives: \n";
       PrintArray(Arr_of_int, lenght);
       break;
     }
@@ -100,21 +114,23 @@
       std::cout << "Enter element you need to find \n";
       std::cin >> double_element;
       std::cout << '\n';
-      if (FindElement(Arr_of_double, double_element, lenght) != -1)
+      try 
       {
-        std::cout << "Your element is on " << FindElement(Arr_of_double, double_element, lenght) << " position in array" << '\n';
+        int32_t temp{FindElement(Arr_of_double, double_element, lenght)};
+        std::cout << "Your element is on " << temp << " position in array" << '\n';
       }
-      else
+      catch (const char * error_message)
       {
-        std::cout << "Your element isn't in array \n";
+        std::cout << error_message;
       }
-      if (CountElements(Arr_of_double, lenght) != -1)
+      try
       {
-        std::cout << "Distance between first and last zeros is " << CountElements(Arr_of_double, lenght) << '\n';
+        int32_t temp{CountElements(Arr_of_double, lenght)};
+        std::cout << "Distance between first and last zeros is " << temp << '\n';
       }
-      else
+      catch(const char * error_message)
       {
-        std::cout << "Array contains 1 or 0 zeros \n";
+        std::cout << error_message << '\n';
       }
       std::cout << "Max element is " << FindMaxElement(Arr_of_double, lenght) << " and he is on " << MaxElement(Arr_of_double, lenght) << " position \n";
       std::cout << "Min element is " << FindMinElement(Arr_of_double, lenght) << " and he is on " << MinElement(Arr_of_double, lenght) << " position \n";
@@ -124,7 +140,15 @@
       RemoveNegativesAndFillZeros(Arr_of_double, lenght);
       std::cout << "Array with removed negatives: \n";
       PrintArray(Arr_of_double, lenght);
-      BubbleSort(Arr_of_double, lenght);
+      std::cout << "Enter 1 if you want to sort array to increase and 2 for sort to decrease \n";
+      
+      std::cin >> switcher_2;
+      while (switcher_2 != 1 && switcher_2 != 2)
+    {
+        std::cout << "Try again \n";
+       std::cin >> switcher_2;
+    }
+    BubbleSort(Arr_of_double, lenght, switcher_2);
       std::cout << "Sorted Array with removed zeros: \n";
       PrintArray(Arr_of_double, lenght);
       ReverseArray(Arr_of_double, lenght);

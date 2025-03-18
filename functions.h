@@ -1,0 +1,316 @@
+#include <cmath>
+#include <iostream>
+
+template<typename Type>
+bool decrease(Type element_1, Type element_2)
+{
+    if (element_1 >= element_2)
+    {
+        return 1;
+    }
+    else 
+    {
+        return 0;
+    }
+    return element_1 >= element_2;
+}
+
+
+template<typename Type>
+bool increase(Type element_1, Type element_2)
+{
+    if (element_1 <= element_2)
+    {
+        return 1;
+    }
+    else 
+    {
+        return 0;
+    }
+    return element_1 <= element_2;
+} 
+
+
+template<typename Type>
+void BubbleSort(Type* Arr, int64_t lenght, int32_t switcher)
+{
+    Type temp{};
+    if (switcher == 1)
+    {
+    for (int32_t i = 0; i < lenght; ++i)
+    {
+        for (int32_t j = 0; j < lenght-1; ++j)
+        {
+            if (Arr[j] > Arr[j+1])
+            {
+                temp = Arr[j];
+                Arr[j] = Arr[j+1];
+                Arr[j+1] = temp;
+            }
+        }
+    }
+    }
+    else
+    {
+        for (int32_t i = 0; i < lenght; ++i)
+         {
+             for (int32_t j = 0; j < lenght-1; ++j)
+            {
+                if (Arr[j] < Arr[j+1])
+                {
+                    temp = Arr[j];
+                     Arr[j] = Arr[j+1];
+                     Arr[j+1] = temp;
+                }
+            }
+        }
+    }
+
+}
+
+
+template<typename Type>
+int32_t CountElements(Type * Arr, int64_t lenght)
+{
+    int32_t result{};
+    int32_t index_of_first_zero{-1};
+    int32_t index_of_last_zero{-1};
+    for (size_t i = 0; i < lenght; ++i)
+    {
+        if (Arr[i] == 0 && index_of_first_zero == -1)
+        {
+            index_of_first_zero = i;
+        }
+        if (Arr[i] == 0)
+        {
+            index_of_last_zero = i;
+        }
+    }
+    if (index_of_first_zero == -1)
+    {
+        throw "Array contains 0 zeros \n";
+    }
+    else if (index_of_last_zero == -1)
+    {
+        throw "Array contains only 1 zero \n";
+    }
+    return index_of_last_zero - index_of_first_zero - 1;
+}
+
+
+int32_t CountElements(char * Arr, int64_t lenght)
+{
+    int32_t result{};
+    int32_t index_of_first_zero{-1};
+    int32_t index_of_last_zero{-1};
+    for (size_t i = 0; i < lenght; ++i)
+    {
+        if (Arr[i] == '0' && index_of_first_zero == -1)
+        {
+            index_of_first_zero = i;
+        }
+        if (Arr[i] == '0')
+        {
+            index_of_last_zero = i;
+        }
+    }
+    if (index_of_first_zero == -1)
+    {
+        throw "Array contains 0 zeros \n";
+    }
+    else if (index_of_last_zero == -1)
+    {
+        throw "Array contains only 1 zero \n";
+    }
+    return index_of_last_zero - index_of_first_zero - 1;
+}
+
+
+template<typename Type>
+Type FindElement(Type* arr, Type element, int64_t size)
+{
+    for(size_t i = 0; i < size; ++i)
+    {
+        if(arr[i] == element)
+        {
+            return i + 1;
+        }
+    }
+    throw "Your element isn't in array \n";
+}
+
+
+template<typename Type>
+void ReverseArray(Type* arr, int64_t size)
+{
+    int64_t lenght_of_for{size/2};
+    Type tmp{};
+    for(size_t i = 0; i < lenght_of_for; ++i)
+    {
+        tmp = arr[i];
+        arr[i] = arr[size - i - 1];
+        arr[size - i - 1] = tmp;
+    }
+
+}
+
+
+template<typename Type>
+void PrintArray(Type* Arr, int64_t lenght)
+{
+    for (int32_t i = 0; i < lenght; ++i)
+    {
+        std::cout << Arr[i] << ' ';
+    }
+    std::cout << '\n';
+}
+
+
+template<typename Type>
+void InputArr(Type* arr, int64_t size)
+{
+ for (int32_t i = 0; i < size; ++i)
+ {
+  std::cout << "Enter element number " << i + 1 << ": \n";
+  std::cin >> arr[i];
+ }
+}
+
+
+template<typename Type>
+void RemoveNegativesAndFillZeros(Type* arr, int64_t size)
+{
+ int posIndex = 0; 
+ for (int i = 0; i < size; ++i) {
+  if (arr[i] >= 0) {
+   arr[posIndex] = arr[i];
+   posIndex++;
+  }
+ }
+ for (int i = posIndex; i < size; ++i) {
+  arr[i] = 0;
+ }
+}
+
+
+template<typename Type>
+Type FindMaxElement(Type* arr, int64_t size)
+{
+    Type maxElement{arr[0]};
+    for (size_t i = 0; i < size; ++i) 
+    {
+        if (arr[i] > maxElement) 
+        {
+            maxElement = arr[i];
+        }
+    }
+    return maxElement;
+}
+
+
+template<typename Type>
+Type FindMinElement(Type* arr, int64_t size)
+{
+    Type minElement{arr[0]};
+    for (size_t i = 0; i < size; ++i) 
+    {
+        if (arr[i] < minElement) 
+        {
+            minElement = arr[i];
+        }
+    }
+    return minElement;
+}
+
+
+template<typename Type>
+int64_t MaxElement(Type* arr, int64_t size)
+{
+ int64_t maxIndex{};
+ for (int64_t i = 1; i < size; ++i)
+ {
+  if (arr[i] > arr[maxIndex])
+  {
+   maxIndex = i;
+  }
+ }
+ return maxIndex + 1;
+}
+
+
+template<typename Type>
+int64_t MinElement(Type* arr, int64_t size)
+{
+ int64_t minIndex{};
+ for (int64_t i = 1; i < size; ++i)
+ {
+  if (arr[i] < arr[minIndex])
+  {
+   minIndex = i;
+  }
+ }
+ return minIndex + 1;
+}
+
+
+template<typename Type>
+double CalculateAverage(Type* arr, int64_t size)
+{
+    double result{};
+    int32_t temp{};
+    int32_t minIndex{MinElement(arr, size)};
+    int32_t maxIndex{MaxElement(arr, size)};
+    if (minIndex > maxIndex)
+    {
+        temp = minIndex;
+        minIndex = maxIndex;
+        maxIndex = minIndex;
+    }
+    for (int32_t i = minIndex; i < maxIndex-1; ++i)
+    {
+        result += arr[i];
+    }
+    return 1.0*result/(maxIndex-1-minIndex);
+}
+
+
+void InputSize(int64_t& size)
+{
+ std::cout << "Input size:\n";
+ std::cin >> size;
+}
+
+
+bool isNumberSimple(int64_t number)
+{
+    if (number <= 0)
+    {
+        return 0;
+    }
+    for (size_t i = 2; i <= sqrt(number); ++i)
+    {
+        if (number % i == 0)
+        {
+            return 0;
+        }
+    }
+    if (number == 1)
+    {
+        return 0;
+    }
+    return 1;
+}
+
+
+int32_t outputSumOfSimpleElements(int64_t* Arr, int64_t lenght)
+{
+    int32_t result{};
+    for (size_t i = 0; i < lenght; ++i)
+    {
+        if (isNumberSimple(Arr[i]))
+        {
+            result += Arr[i];
+        }
+    }
+    return result;
+}
