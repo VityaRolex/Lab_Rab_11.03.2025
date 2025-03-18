@@ -87,33 +87,17 @@
       PrintArray(Arr_of_int, lenght);
       std::cout << "Enter 1 if you want to sort array to increase and 2 for sort to decrease \n";
       
-      std::cin >> switcher;
+      std::cin >> switcher_2;
       while (switcher != 1 && switcher != 2)
     {
         std::cout << "Try again \n";
        std::cin >> switcher_2;
     }
-    switch(switcher_2)
-    {
-      case 1:
-      {
-        BubbleSort(Arr_of_int, lenght, increase);
-        break;
-      }
-      case 2:
-      {
-        BubbleSort(Arr_of_int, lenght, decrease);
-        break;
-      }
-      default:
-      {
-        break;
-      }
-    }
-      std::cout << "Sorted Array with removed zeros: \n";
+      BubbleSort(Arr_of_int, lenght, switcher_2);
+      std::cout << "Sorted Array with removed negatives: \n";
       PrintArray(Arr_of_int, lenght);
       ReverseArray(Arr_of_int, lenght);
-      std::cout << " Reversed sorted Array with removed zeros: \n";
+      std::cout << " Reversed sorted Array with removed negatives: \n";
       PrintArray(Arr_of_int, lenght);
       break;
     }
@@ -151,23 +135,13 @@
       PrintArray(Arr_of_double, lenght);
       std::cout << "Enter 1 if you want to sort array to increase and 2 for sort to decrease \n";
       
-      std::cin >> switcher;
+      std::cin >> switcher_2;
       while (switcher != 1 && switcher != 2)
     {
         std::cout << "Try again \n";
        std::cin >> switcher_2;
     }
-    switch(switcher_2)
-    {
-      case 1:
-      {
-        BubbleSort(Arr_of_double, lenght, increase);
-      }
-      case 2:
-      {
-        BubbleSort(Arr_of_double, lenght, decrease);
-      }
-    }
+    BubbleSort(Arr_of_double, lenght, switcher_2);
       std::cout << "Sorted Array with removed zeros: \n";
       PrintArray(Arr_of_double, lenght);
       ReverseArray(Arr_of_double, lenght);

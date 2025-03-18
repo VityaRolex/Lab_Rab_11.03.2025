@@ -1,4 +1,4 @@
-
+#include <cmath>
 #include <iostream>
 void InputSize(int64_t&);
 int32_t CountElements(char * , int64_t);
@@ -35,14 +35,16 @@ bool increase(Type element_1, Type element_2)
 
 
 template<typename Type>
-void BubbleSort(Type* Arr, int64_t lenght, bool (*func)(Type, Type))
+void BubbleSort(Type* Arr, int64_t lenght, int32_t switcher)
 {
     Type temp{};
+    if (switcher == 1)
+    {
     for (int32_t i = 0; i < lenght; ++i)
     {
         for (int32_t j = 0; j < lenght-1; ++j)
         {
-            if (!func(Arr[j], Arr[j+1]) == true)
+            if (Arr[j] > Arr[j+1])
             {
                 temp = Arr[j];
                 Arr[j] = Arr[j+1];
@@ -50,7 +52,25 @@ void BubbleSort(Type* Arr, int64_t lenght, bool (*func)(Type, Type))
             }
         }
     }
+    }
+    else
+    {
+        for (int32_t i = 0; i < lenght; ++i)
+         {
+             for (int32_t j = 0; j < lenght-1; ++j)
+            {
+                if (Arr[j] < Arr[j+1])
+                {
+                    temp = Arr[j];
+                     Arr[j] = Arr[j+1];
+                     Arr[j+1] = temp;
+                }
+            }
+        }
+    }
+
 }
+
 
 template<typename Type>
 int32_t CountElements(Type * Arr, int64_t lenght)
@@ -78,6 +98,33 @@ int32_t CountElements(Type * Arr, int64_t lenght)
     return index_of_last_zero - index_of_first_zero - 1;
 }
 
+
+int32_t CountElements(char * Arr, int64_t lenght)
+{
+    int32_t result{};
+    int32_t index_of_first_zero{};
+    int32_t index_of_last_zero{};
+    bool is_zero_first{1};
+    for (size_t i = 0; i < lenght; ++i)
+    {
+        if (Arr[i] == '0' && is_zero_first)
+        {
+            index_of_first_zero = i;
+            is_zero_first = 0;
+        }
+        if (Arr[i] == '0')
+        {
+            index_of_last_zero = i;
+        }
+    }
+    if (is_zero_first || index_of_last_zero- index_of_first_zero < 0)
+    {
+        return -1;
+    }
+    return index_of_last_zero - index_of_first_zero - 1;
+}
+
+
 template<typename Type>
 Type FindElement(Type* arr, Type element, int64_t size)
 {
@@ -90,6 +137,7 @@ Type FindElement(Type* arr, Type element, int64_t size)
     }
     return -1;
 }
+
 
 template<typename Type>
 void ReverseArray(Type* arr, int64_t size)
@@ -105,6 +153,7 @@ void ReverseArray(Type* arr, int64_t size)
 
 }
 
+
 template<typename Type>
 void PrintArray(Type* Arr, int64_t lenght)
 {
@@ -115,6 +164,7 @@ void PrintArray(Type* Arr, int64_t lenght)
     std::cout << '\n';
 }
 
+
 template<typename Type>
 void InputArr(Type* arr, int64_t size)
 {
@@ -124,6 +174,7 @@ void InputArr(Type* arr, int64_t size)
   std::cin >> arr[i];
  }
 }
+
 
 template<typename Type>
 void RemoveNegativesAndFillZeros(Type* arr, int64_t size)
@@ -140,6 +191,7 @@ void RemoveNegativesAndFillZeros(Type* arr, int64_t size)
  }
 }
 
+
 template<typename Type>
 Type FindMaxElement(Type* arr, int64_t size)
 {
@@ -153,6 +205,7 @@ Type FindMaxElement(Type* arr, int64_t size)
     }
     return maxElement;
 }
+
 
 template<typename Type>
 Type FindMinElement(Type* arr, int64_t size)
@@ -170,13 +223,6 @@ Type FindMinElement(Type* arr, int64_t size)
 
 
 template<typename Type>
-double CalculateAverage(Type* arr, int64_t size)
-{
-    return (FindMaxElement(arr, size) + FindMinElement(arr, size)) / 2.0;
-}
-
-
-template<typename Type>
 int64_t MaxElement(Type* arr, int64_t size)
 {
  int64_t maxIndex{};
@@ -190,6 +236,7 @@ int64_t MaxElement(Type* arr, int64_t size)
  return maxIndex + 1;
 }
 
+
 template<typename Type>
 int64_t MinElement(Type* arr, int64_t size)
 {
@@ -202,4 +249,67 @@ int64_t MinElement(Type* arr, int64_t size)
   }
  }
  return minIndex + 1;
+}
+
+
+template<typename Type>
+double CalculateAverage(Type* arr, int64_t size)
+{
+    double result{};
+    int32_t temp{};
+    int32_t minIndex{MinElement(arr, size)};
+    int32_t maxIndex{MaxElement(arr, size)};
+    if (minIndex > maxIndex)
+    {
+        temp = minIndex;
+        minIndex = maxIndex;
+        maxIndex = minIndex;
+    }
+    for (int32_t i = minIndex; i < maxIndex-1; ++i)
+    {
+        result += arr[i];
+    }
+    return 1.0*result/(maxIndex-1-minIndex);
+}
+
+
+void InputSize(int64_t& size)
+{
+ std::cout << "Input size:\n";
+ std::cin >> size;
+}
+
+
+bool isNumberSimple(int64_t number)
+{
+    if (number <= 0)
+    {
+        return 0;
+    }
+    for (size_t i = 2; i <= sqrt(number); ++i)
+    {
+        if (number % i == 0)
+        {
+            return 0;
+        }
+    }
+    if (number == 1)
+    {
+        return 0;
+    }
+    return 1;
+}
+
+
+int32_t outputSumOfSimpleElements(int64_t* Arr, int64_t lenght)
+{
+    int32_t result{};
+    for (size_t i = 0; i < lenght; ++i)
+    {
+        if (isNumberSimple(Arr[i]))
+        {
+            result += Arr[i];
+        }
+    }
+    return result;
 }
