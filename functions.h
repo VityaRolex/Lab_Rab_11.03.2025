@@ -1,8 +1,5 @@
 #include <cmath>
 #include <iostream>
-void InputSize(int64_t&);
-int32_t CountElements(char * , int64_t);
-int32_t outputSumOfSimpleElements(int64_t*, int64_t);
 
 template<typename Type>
 bool decrease(Type element_1, Type element_2)
@@ -76,24 +73,26 @@ template<typename Type>
 int32_t CountElements(Type * Arr, int64_t lenght)
 {
     int32_t result{};
-    int32_t index_of_first_zero{};
-    int32_t index_of_last_zero{};
-    bool is_zero_first{1};
+    int32_t index_of_first_zero{-1};
+    int32_t index_of_last_zero{-1};
     for (size_t i = 0; i < lenght; ++i)
     {
-        if (Arr[i] == 0 && is_zero_first)
+        if (Arr[i] == 0 && index_of_first_zero == -1)
         {
             index_of_first_zero = i;
-            is_zero_first = 0;
         }
         if (Arr[i] == 0)
         {
             index_of_last_zero = i;
         }
     }
-    if (is_zero_first || index_of_last_zero- index_of_first_zero < 0)
+    if (index_of_first_zero == -1)
     {
-        return -1;
+        throw "Array contains 0 zeros \n";
+    }
+    else if (index_of_last_zero == -1)
+    {
+        throw "Array contains only 1 zero \n";
     }
     return index_of_last_zero - index_of_first_zero - 1;
 }
@@ -102,24 +101,26 @@ int32_t CountElements(Type * Arr, int64_t lenght)
 int32_t CountElements(char * Arr, int64_t lenght)
 {
     int32_t result{};
-    int32_t index_of_first_zero{};
-    int32_t index_of_last_zero{};
-    bool is_zero_first{1};
+    int32_t index_of_first_zero{-1};
+    int32_t index_of_last_zero{-1};
     for (size_t i = 0; i < lenght; ++i)
     {
-        if (Arr[i] == '0' && is_zero_first)
+        if (Arr[i] == '0' && index_of_first_zero == -1)
         {
             index_of_first_zero = i;
-            is_zero_first = 0;
         }
         if (Arr[i] == '0')
         {
             index_of_last_zero = i;
         }
     }
-    if (is_zero_first || index_of_last_zero- index_of_first_zero < 0)
+    if (index_of_first_zero == -1)
     {
-        return -1;
+        throw "Array contains 0 zeros \n";
+    }
+    else if (index_of_last_zero == -1)
+    {
+        throw "Array contains only 1 zero \n";
     }
     return index_of_last_zero - index_of_first_zero - 1;
 }
@@ -135,7 +136,7 @@ Type FindElement(Type* arr, Type element, int64_t size)
             return i + 1;
         }
     }
-    return -1;
+    throw "Your element isn't in array \n";
 }
 
 
