@@ -114,21 +114,23 @@
       std::cout << "Enter element you need to find \n";
       std::cin >> double_element;
       std::cout << '\n';
-      if (FindElement(Arr_of_double, double_element, lenght) != -1)
+      try 
       {
-        std::cout << "Your element is on " << FindElement(Arr_of_double, double_element, lenght) << " position in array" << '\n';
+        int32_t temp{FindElement(Arr_of_double, double_element, lenght)};
+        std::cout << "Your element is on " << temp << " position in array" << '\n';
       }
-      else
+      catch (const char * error_message)
       {
-        std::cout << "Your element isn't in array \n";
+        std::cout << error_message;
       }
-      if (CountElements(Arr_of_double, lenght) != -1)
+      try
       {
-        std::cout << "Distance between first and last zeros is " << CountElements(Arr_of_double, lenght) << '\n';
+        int32_t temp{CountElements(Arr_of_double, lenght)};
+        std::cout << "Distance between first and last zeros is " << temp << '\n';
       }
-      else
+      catch(const char * error_message)
       {
-        std::cout << "Array contains 1 or 0 zeros \n";
+        std::cout << error_message << '\n';
       }
       std::cout << "Max element is " << FindMaxElement(Arr_of_double, lenght) << " and he is on " << MaxElement(Arr_of_double, lenght) << " position \n";
       std::cout << "Min element is " << FindMinElement(Arr_of_double, lenght) << " and he is on " << MinElement(Arr_of_double, lenght) << " position \n";
