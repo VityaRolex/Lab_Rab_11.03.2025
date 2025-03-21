@@ -1,4 +1,5 @@
 #include <cmath>
+#include <typeinfo>
 #include <iostream>
 
 template<typename Type>
@@ -97,7 +98,7 @@ int32_t CountElements(char * Arr, int64_t lenght)
 
 
 template<typename Type>
-Type FindElement(Type* arr, Type element, int64_t size)
+int32_t FindElement(Type* arr, Type element, int64_t size)
 {
     for(size_t i = 0; i < size; ++i)
     {
@@ -234,7 +235,11 @@ double CalculateAverage(Type* arr, int64_t size)
     {
         temp = minIndex;
         minIndex = maxIndex;
-        maxIndex = minIndex;
+        maxIndex = temp;
+    }
+    if (maxIndex - minIndex == 1)
+    {
+        throw "Max and Min elements are neighbours, impossible to count elements between they";
     }
     for (int32_t i = minIndex; i < maxIndex-1; ++i)
     {
@@ -244,10 +249,15 @@ double CalculateAverage(Type* arr, int64_t size)
 }
 
 
-void InputSize(int64_t& size)
+void InputSize(int32_t& size)
 {
  std::cout << "Input size:\n";
  std::cin >> size;
+ while (size <= 0)
+ {
+    std::cout << "HaHa, try again \n";
+    std::cin >>size;
+ }
 }
 
 
@@ -283,4 +293,67 @@ int32_t outputSumOfSimpleElements(int64_t* Arr, int64_t lenght)
         }
     }
     return result;
+}
+
+
+template<typename Type>
+void agregateAll(Type * Arr, int32_t lenght, Type &search_element)
+{
+    int32_t switcher_2{};
+      InputArr(Arr, lenght);
+      std::cout << '\n';
+      std::cout << "Enter element you need to find \n";
+      std::cin >> search_element;
+      std::cout << '\n';
+      try 
+      {
+        int32_t temp{FindElement(Arr, search_element, lenght)};
+        std::cout << "Your element is on " << temp << " position in array" << '\n';
+      }
+      catch (const char * error_message)
+      {
+        std::cout << error_message;
+      }
+      try
+      {
+        int32_t temp{CountElements(Arr, lenght)};
+        std::cout << "Distance between first and last zeros is " << temp << '\n';
+      }
+      catch(const char * error_message)
+      {
+        std::cout << error_message << '\n';
+      }
+      if (!(typeid(search_element).name() == "char"))
+      {
+      std::cout << "Max element is " << FindMaxElement(Arr, lenght) << " and he is on " << MaxElement(Arr, lenght) << " position \n";
+      std::cout << "Min element is " << FindMinElement(Arr, lenght) << " and he is on " << MinElement(Arr, lenght) << " position \n";
+      try
+      {
+        double temp{CalculateAverage(Arr, lenght)};
+        std::cout << "Average is " << temp << '\n';
+      }
+      catch(const char * error_message)
+      {
+        std::cout << error_message << '\n';
+      }
+      std::cout << "Array: \n";
+      PrintArray(Arr, lenght);
+      RemoveNegativesAndFillZeros(Arr, lenght);
+      std::cout << "Array with removed negatives: \n";
+      PrintArray(Arr, lenght);
+    }
+      std::cout << "Enter 1 if you want to sort array to increase and 2 for sort to decrease \n";
+      
+      std::cin >> switcher_2;
+      while (switcher_2 != 1 && switcher_2 != 2)
+    {
+        std::cout << "Try again \n";
+       std::cin >> switcher_2;
+    }
+      BubbleSort(Arr, lenght, switcher_2);
+      std::cout << "Sorted Array with removed negatives: \n";
+      PrintArray(Arr, lenght);
+      ReverseArray(Arr, lenght);
+      std::cout << " Reversed sorted Array with removed negatives: \n";
+      PrintArray(Arr, lenght);
 }
