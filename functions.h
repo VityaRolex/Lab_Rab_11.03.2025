@@ -107,7 +107,7 @@ int32_t FindElement(Type* arr, Type element, int64_t size)
             return i + 1;
         }
     }
-    throw "Your element isn't in array \n";
+    throw "Your element isn't in array";
 }
 
 
@@ -312,7 +312,7 @@ void agregateAll(Type * Arr, int32_t lenght, Type &search_element)
       }
       catch (const char * error_message)
       {
-        std::cout << error_message;
+        std::cout << error_message << '\n';
       }
       try
       {
