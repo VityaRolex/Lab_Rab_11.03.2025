@@ -253,9 +253,11 @@ void InputSize(int32_t& size)
 {
  std::cout << "Input size:\n";
  std::cin >> size;
- while (size <= 0)
+ while (size <= 0 || std::cin.fail())
  {
     std::cout << "HaHa, try again \n";
+    std::cin.clear();
+    std::cin.ignore();
     std::cin >>size;
  }
 }

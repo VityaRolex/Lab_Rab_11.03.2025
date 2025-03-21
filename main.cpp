@@ -14,8 +14,10 @@
   int32_t switcher{};
   std::cout << "Press 1 if you want to work with char array and 2 for work with int array and 3 for work with double array \n";
   std::cin >> switcher;
-  while (switcher != 1 && switcher != 2 && switcher != 3)
+  while ((switcher != 1 && switcher != 2 && switcher != 3) || std::cin.fail())
   {
+    std::cin.clear();
+    std::cin.ignore();
     std::cout << "Try again \n";
     std::cin >> switcher;
   }
