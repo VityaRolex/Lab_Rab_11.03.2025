@@ -7,19 +7,17 @@
   int64_t Arr_of_int[100]{};
   double Arr_of_double[100]{};
   char Arr_of_char[100]{};
-  int32_t lenght{};
+  int64_t lenght{};
   int64_t int_element{};
   char char_element{};
   double double_element{};
-  int32_t switcher{};
+  int64_t switcher{};
   std::cout << "Press 1 if you want to work with char array and 2 for work with int array and 3 for work with double array \n";
-  std::cin >> switcher;
-  while ((switcher != 1 && switcher != 2 && switcher != 3) || std::cin.fail())
+  inputIntegerValue(switcher);
+  while (switcher != 1 && switcher != 2 && switcher != 3)
   {
-    std::cin.clear();
-    std::cin.ignore();
     std::cout << "Try again \n";
-    std::cin >> switcher;
+    inputIntegerValue(switcher);
   }
   InputSize(lenght);
   switch(switcher)

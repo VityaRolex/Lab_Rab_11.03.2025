@@ -2,8 +2,28 @@
 #include <typeinfo>
 #include <iostream>
 
+void inputIntegerValue(int64_t & element)
+{
+    double cinTemp{};
+    std::cin >> cinTemp;
+    while (std::cin.fail() || cinTemp - static_cast<int32_t>(cinTemp) != 0)
+ {
+    if(cinTemp - static_cast<int32_t>(cinTemp) != 0)
+    {
+        std::cout << "it's very funny, and now enter INTEGER value \n";
+    }
+    if (std::cin.fail())
+    {
+    std::cout << "It's not funny, be more serious and try again \n";
+    std::cin.clear();
+    std::cin.ignore();
+    }
+    std::cin >> cinTemp;
+  }
+  element = cinTemp;
+}
 template<typename Type>
-void BubbleSort(Type* Arr, int64_t lenght, int32_t switcher)
+void BubbleSort(Type* Arr, int64_t lenght, int64_t switcher)
 {
     Type temp{};
     if (switcher == 1)
@@ -143,8 +163,24 @@ void InputArr(Type* arr, int64_t size)
  for (int32_t i = 0; i < size; ++i)
  {
   std::cout << "Enter element number " << i + 1 << ": \n";
-  std::cin >> arr[i];
+    std::cin >> arr[i];
+    while (std::cin.fail())
+    {
+    std::cout << "It's not funny, be more serious and try again \n";
+    std::cin.clear();
+    std::cin.ignore();
+    std::cin >> arr[i];
+    }
  }
+}
+
+void InputArr(int64_t* arr, int64_t size)
+{
+    for (int32_t i = 0; i < size; ++i)
+    {
+       std::cout << "Enter element number " << i + 1 << ": \n";
+       inputIntegerValue(arr[i]);
+    }
 }
 
 
@@ -249,16 +285,14 @@ double CalculateAverage(Type* arr, int64_t size)
 }
 
 
-void InputSize(int32_t& size)
+void InputSize(int64_t& size)
 {
  std::cout << "Input size:\n";
- std::cin >> size;
- while (size <= 0 || std::cin.fail())
+ inputIntegerValue(size);
+ while (size <= 0)
  {
-    std::cout << "HaHa, try again \n";
-    std::cin.clear();
-    std::cin.ignore();
-    std::cin >>size;
+   std::cout << "enter positive number \n";
+   inputIntegerValue(size);
  }
 }
 
@@ -299,9 +333,9 @@ int32_t outputSumOfSimpleElements(int64_t* Arr, int64_t lenght)
 
 
 template<typename Type>
-void agregateAll(Type * Arr, int32_t lenght, Type &search_element)
+void agregateAll(Type * Arr, int64_t lenght, Type &search_element)
 {
-    int32_t switcher_2{};
+    int64_t switcher_2{};
       InputArr(Arr, lenght);
       std::cout << '\n';
       std::cout << "Enter element you need to find \n";
@@ -325,7 +359,7 @@ void agregateAll(Type * Arr, int32_t lenght, Type &search_element)
       {
         std::cout << error_message << '\n';
       }
-      if (!(typeid(search_element).name() == "char"))
+      if (!(typeid(search_element).name()[0] == 'c'))
       {
       std::cout << "Max element is " << FindMaxElement(Arr, lenght) << " and he is on " << MaxElement(Arr, lenght) << " position \n";
       std::cout << "Min element is " << FindMinElement(Arr, lenght) << " and he is on " << MinElement(Arr, lenght) << " position \n";
@@ -346,10 +380,10 @@ void agregateAll(Type * Arr, int32_t lenght, Type &search_element)
     }
       std::cout << "Enter 1 if you want to sort array to increase and 2 for sort to decrease \n";
       
-      std::cin >> switcher_2;
+      inputIntegerValue(switcher_2);
       while (switcher_2 != 1 && switcher_2 != 2)
     {
-        std::cout << "Try again \n";
+       std::cout << "Try again \n";
        std::cin >> switcher_2;
     }
       BubbleSort(Arr, lenght, switcher_2);
