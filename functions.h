@@ -340,6 +340,13 @@ void agregateAll(Type * Arr, int64_t lenght, Type &search_element)
       std::cout << '\n';
       std::cout << "Enter element you need to find \n";
       std::cin >> search_element;
+         while (std::cin.fail())
+         {
+         std::cout << "It's not funny, be more serious and try again \n";
+         std::cin.clear();
+         std::cin.ignore();
+         std::cin >> search_element;
+         }
       std::cout << '\n';
       try 
       {
